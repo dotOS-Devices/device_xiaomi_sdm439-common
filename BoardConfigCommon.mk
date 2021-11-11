@@ -82,7 +82,7 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8937
 TARGET_NO_BOOTLOADER := true
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/configs/bluetooth
 
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
@@ -107,11 +107,14 @@ BOARD_HAVE_QCOM_FM := true
 TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # Filesystem
-TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/config.fs
+TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/configs/config.fs
 
 # HIDL
-DEVICE_MANIFEST_FILE := $(COMMON_PATH)/manifest.xml
-DEVICE_MATRIX_FILE := $(COMMON_PATH)/compatibility_matrix.xml
+DEVICE_MANIFEST_FILE := $(COMMON_PATH)/configs/manifests/manifest.xml
+DEVICE_MATRIX_FILE := $(COMMON_PATH)/configs/manifests/compatibility_matrix.xml
+ifneq ($(filter lineage_olive lineage_olives lineage_pine,$(PRODUCT_NAME)),)
+DEVICE_MANIFEST_FILE := $(COMMON_PATH)/configs/manifests/manifest-lineage.xml
+endif
 
 # HW crypto
 TARGET_HW_DISK_ENCRYPTION := true
